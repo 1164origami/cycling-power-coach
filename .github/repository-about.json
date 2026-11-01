@@ -1,0 +1,15 @@
+{
+  "repository": "1164origami/cycling-power-coach",
+  "description": "Codex-first Agent Skill for cycling power analytics, FTP, training load, recovery, and endurance planning using authorized training data.",
+  "topics": [
+    "codex",
+    "agent-skills",
+    "cycling",
+    "cycling-training",
+    "power-meter",
+    "ftp",
+    "endurance-training",
+    "intervals-icu",
+    "sports-science"
+  ]
+}

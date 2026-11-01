@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Static integrity checks for a Markdown-only cycling Skill. No dependencies."""
 from pathlib import Path
+import json
 import re
 import sys
 
@@ -90,6 +91,39 @@ if polarized.exists():
 
 if not (ROOT / "tests/scenarios.md").exists():
     failures.append("missing manual coaching scenario tests")
+
+# Validate desired GitHub About metadata; this does NOT apply metadata to GitHub.
+about_path = ROOT / ".github/repository-about.json"
+if not about_path.exists():
+    failures.append("GitHub About profile file missing")
+else:
+    try:
+        about = json.loads(about_path.read_text(encoding="utf-8"))
+    except (ValueError, OSError) as ex:
+        failures.append(f"GitHub About JSON invalid: {ex}")
+    else:
+        expected_repo = "1164origami/" + ROOT.name
+        if about.get("repository") != expected_repo:
+            failures.append(f"About repository must equal {expected_repo}")
+        description = about.get("description", "")
+        topics = about.get("topics", [])
+        if not isinstance(description, str) or not (15 <= len(description) <= 160):
+            failures.append("About description must be between 15 and 160 characters")
+        if isinstance(description, str) and re.search(r"(?i)openclaw|qclaw", description):
+            failures.append("About description contains legacy platform branding")
+        if not isinstance(topics, list) or not (3 <= len(topics) <= 20):
+            failures.append("About topics must be a list of 3 to 20 entries")
+        else:
+            valid_topic = re.compile(r"^[a-z0-9-]+$")
+            if any(not isinstance(topic, str) or not valid_topic.fullmatch(topic) for topic in topics):
+                failures.append("Topics must use lowercase letters, digits and hyphens")
+            if len(set(topics)) != len(topics):
+                failures.append("About topics contain duplicates")
+            for required in ("codex", "agent-skills", "cycling"):
+                if required not in topics:
+                    failures.append(f"Missing shared topic: {required}")
+if not (ROOT / "scripts/sync-github-about.ps1").exists():
+    failures.append("Missing local GitHub About sync script")
 
 if failures:
     print("Skill validation failed:")
