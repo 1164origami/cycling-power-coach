@@ -116,7 +116,9 @@ cycling-power-coach/
     ├── indoor_training.md                # 室内骑行训练 · Indoor cycling training
     ├── hiit_and_vo2max.md                # HIIT & VO₂max 科学 · HIIT & VO₂max science
     ├── overtraining_and_recovery.md       # 过度训练 & 恢复 · Overtraining & recovery
-    └── critical_power_and_w_prime.md     # CP & W' 模型 · CP & W' model
+    ├── critical_power_and_w_prime.md
+    ├── multisource_coaching.md            # 高驰/ICU/主观反馈
+    └── return_to_riding.md                # 停骑复骑与100km路线目标     # CP & W' 模型 · CP & W' model
 ```
 
 ---
@@ -159,3 +161,9 @@ MIT © [1164origami](https://github.com/1164origami)
   <br/>
   <sub>Built for OpenClaw & QClaw</sub>
 </p>
+
+## 2026-11 更新：多源数据训练与安全修订
+
+本仓库提供**训练知识**，不自动取得用户运动账号权限。支持将已获授权的 COROS/高驰、Intervals.icu 记录与本人RPE、症状、睡眠、补给一起评估；跨平台同一次活动不重复计数。详见 [多源教练协议](references/multisource_coaching.md) 与 [复骑/100km分级指南](references/return_to_riding.md)。
+
+此次修订校正 IF = NP/FTP、室内外FTP无固定高低关系、ERG最大努力测试的局限、个体化补水、心率功率解耦的条件，以及 **100公里不等于传统100英里Century**。公开仓库严禁提交私人训练文件、完整GPS轨迹、账号标识或健康记录。
