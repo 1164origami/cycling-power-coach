@@ -174,3 +174,7 @@ MIT © [1164origami](https://github.com/1164origami)
 本仓库提供**训练知识**，不自动取得用户运动账号权限。支持将已获授权的 COROS/高驰、Intervals.icu 记录与本人RPE、症状、睡眠、补给一起评估；跨平台同一次活动不重复计数。详见 [多源教练协议](references/multisource_coaching.md) 与 [复骑/100km分级指南](references/return_to_riding.md)。
 
 此次修订校正 IF = NP/FTP、室内外FTP无固定高低关系、ERG最大努力测试的局限、个体化补水、心率功率解耦的条件，以及 **100公里不等于传统100英里Century**。公开仓库严禁提交私人训练文件、完整GPS轨迹、账号标识或健康记录。
+
+## 🧪 复核与可回归验证
+
+先运行 `python tests/validate_skill.py` 检查 Markdown 链接、Skill 元数据和关键计算规则，再用 [tests/scenarios.md](tests/scenarios.md) 中的**合成问句**手动评估 Codex 选择的 Skill 和输出。**CI 成功只代表静态校验通过，不代表功率模型、运动科学或运动医学内容全部得到验证。**

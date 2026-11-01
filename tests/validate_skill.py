@@ -88,6 +88,9 @@ if polarized.exists():
     if "三分区" not in q or "七分区" not in q:
         failures.append("polarized training must distinguish 3-zone from 7-zone models")
 
+if not (ROOT / "tests/scenarios.md").exists():
+    failures.append("missing manual coaching scenario tests")
+
 if failures:
     print("Skill validation failed:")
     for failure in failures:
