@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cycling Power Coach"
+  short_description: "功率数据、训练计划、复骑恢复与100公里耐力"
+  default_prompt: "Use $cycling-power-coach to analyze authorized cycling workout data and subjective recovery, then recommend a safe, evidence-aware next ride."

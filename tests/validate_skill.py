@@ -42,6 +42,14 @@ for required in ["references/multisource_coaching.md", "references/return_to_rid
     if not (ROOT / required).exists():
         failures.append(f"missing required document {required}")
 
+# Codex-first metadata and legacy platform checks
+if not (ROOT / "agents/openai.yaml").exists():
+    failures.append("missing Codex interface metadata expected by this repository")
+if re.search(r"(?i)(?:openclaw|qclaw|\\.qclaw)", source):
+    failures.append("outdated platform branding in Markdown")
+if not (ROOT / "AGENTS.md").exists():
+    failures.append("missing Codex maintenance guidance")
+
 if failures:
     print("Skill validation failed:")
     for failure in failures:

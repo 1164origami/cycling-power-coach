@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/OpenClaw-Skill-6C5CE7?style=for-the-badge" alt="OpenClaw Skill" />
-  <img src="https://img.shields.io/badge/QClaw-Skill-6C5CE7?style=for-the-badge" alt="QClaw Skill" />
+  <img src="https://img.shields.io/badge/Codex-Skill-0A73B8?style=for-the-badge" alt="Codex Skill" />
+  <img src="https://img.shields.io/badge/Agent_Skills-Open_Standard-2A9D8F?style=for-the-badge" alt="Agent Skills" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" />
 </p>
 
@@ -18,13 +18,11 @@
 
 ## 📖 简介 · Introduction
 
-**Cycling Power Coach** 是一个 OpenClaw / QClaw Skill，提供科学、系统化的自行车功率训练指导。融合 Joe Friel 经典方法论与 Coggan/Allen（PMC / MMP）、Stephen Seiler（极化训练）、Dylan Johnson 及同行评审运动科学的前沿研究。
+**Cycling Power Coach** 是一个以 **OpenAI Codex** 为主要使用环境、兼容开放 Agent Skills 规范的自行车功率训练知识型 Skill。基于 Joe Friel 的训练框架，结合 Coggan/Allen 功率数据分析、Seiler 强度分布及运动科学资料，帮助骑行者理解FTP、NP、TSS、IF、CTL/ATL/TSB、耐久性和训练恢复。
 
-**Cycling Power Coach** is an OpenClaw / QClaw Skill providing scientific, systematic power-based cycling training guidance. Integrates Joe Friel's classic methodology with cutting-edge research from Coggan/Allen (PMC, MMP), Stephen Seiler (polarized training), Dylan Johnson, and peer-reviewed sports science.
+**Cycling Power Coach** is a Codex-first, portable Agent Skill for power-based endurance coaching, training analysis, return-to-riding progression and evidence-aware cycling decisions.
 
-> ⚠️ **OpenClaw / QClaw Skill** — 为 AI 助手提供功率训练结构化知识库。触发关键词：功率训练、FTP、TSS、NP、训练区间、周期化、比赛策略等。
->
-> ⚠️ **OpenClaw / QClaw Skill** — provides structured power training knowledge for AI assistants. Triggered by: power training, FTP, TSS, NP, training zones, periodization, race strategy, etc.
+> **训练决策原则**：结合功率数据、RPE、疼痛/麻木、睡眠、补水补给和个体目标综合判断。与姿势或接触点疼痛有关的问题，请交叉参考 [bike-fit-guide](https://github.com/1164origami/bike-fit-guide)。不以平台恢复分数单独决定是否可以训练。
 
 ---
 
@@ -71,58 +69,67 @@
 
 ---
 
-## 📦 安装 · Installation
+## 📦 在 Codex 中安装 · Installation
 
-### 依赖 · Requirements
+本仓库是标准的 `SKILL.md` + `references/` 知识型 Skill，无需 Python 包或后台进程。**个人级安装目录推荐 `$HOME/.agents/skills/`**。
 
-本 Skill 为纯知识型（Markdown），无需额外依赖。
+### Windows PowerShell（推荐）
 
-This is a knowledge-only Skill (Markdown), no additional dependencies required.
+```powershell
+$skillsRoot = Join-Path $HOME ".agents\skills"
+New-Item -ItemType Directory -Force -Path $skillsRoot | Out-Null
+git clone https://github.com/1164origami/cycling-power-coach.git (Join-Path $skillsRoot "cycling-power-coach")
+```
 
-### For OpenClaw / QClaw
+已克隆的用户可使用 `git -C (Join-Path $HOME '.agents\skills\cycling-power-coach') pull --ff-only` 更新。
+
+### macOS / Linux
 
 ```bash
-# Option A: Git Clone（推荐 · Recommended）
-git clone https://github.com/1164origami/cycling-power-coach.git ~/.qclaw/skills/cycling-power-coach
-
-# Option B: 手动复制 · Manual Copy
-cp -r cycling-power-coach/ ~/.qclaw/skills/
-
-# Option C: OpenClaw workspace
-cp -r cycling-power-coach/ <your-openclaw-workspace>/skills/
+mkdir -p "$HOME/.agents/skills"
+git clone https://github.com/1164origami/cycling-power-coach.git "$HOME/.agents/skills/cycling-power-coach"
 ```
 
-当对话涉及功率训练、FTP、训练区间、比赛策略等关键词时，AI 助手会自动加载此技能。
+如只需在一个工作仓库内使用，也可克隆到该仓库 `.agents/skills/cycling-power-coach/`。
 
-The AI assistant auto-loads this skill when triggered by power training, FTP, training zones, or race strategy keywords.
+### 调用示例
+
+- 显式调用：`$cycling-power-coach`，或在 Codex 中打开 `/skills` 选择。
+- 提示词示例：`使用 $cycling-power-coach 读取我已授权的训练记录，对比最近两次骑行的功率保持、RPE和恢复情况，制定下次轻松骑的方案。`
+- Codex 也可能根据 `SKILL.md` 描述自动选择，但并不保证每次关键词匹配都触发。
+- Codex 检测安装或更新一般不需特殊操作；若新 Skill 未出现可重启。详见 [Codex Skills 官方文档](https://developers.openai.com/codex/skills)。
+
+### 与高驰、Intervals.icu 数据配合
+
+本仓库只定义**分析流程**，不会自动获得 COROS/高驰或 Intervals.icu 权限。Codex 如已配置相应插件/MCP且得到用户授权，可按 [多源教练协议](references/multisource_coaching.md) 读取训练信息；否则可分析用户明确提供的脱敏记录。默认只读，不自动修改FTP、训练日历或路书。公开仓库不要写入私人运动数据及GPS家庭轨迹。
 
 ---
-
 ## 🗂️ 文件结构 · Structure
 
-```
+```text
 cycling-power-coach/
-├── SKILL.md                              # 核心技能定义 · Core（速查表 & 诊断流程）
-├── README.md                             # 本文件 · This file
-├── LICENSE                               # MIT License
-├── .gitignore
-└── references/                           # 分层知识库 · Layered knowledge base（按需加载）
-    ├── training_plans.md                 # 训练计划模板 · Training plan templates
-    ├── data_analysis.md                  # 功率数据分析方法 · Power data analysis methods
-    ├── race_specific.md                  # 专项比赛策略 · Race-specific strategy
-    ├── concepts_glossary.md              # 术语表 · Glossary of terms
-    ├── advanced_data_analysis.md         # Coggan/Allen 深度分析 · Deep analytics
-    ├── polarized_training.md             # Seiler 极化训练模型 · Polarized training model
-    ├── indoor_training.md                # 室内骑行训练 · Indoor cycling training
-    ├── hiit_and_vo2max.md                # HIIT & VO₂max 科学 · HIIT & VO₂max science
-    ├── overtraining_and_recovery.md       # 过度训练 & 恢复 · Overtraining & recovery
-    ├── critical_power_and_w_prime.md
-    ├── multisource_coaching.md            # 高驰/ICU/主观反馈
-    └── return_to_riding.md                # 停骑复骑与100km路线目标     # CP & W' 模型 · CP & W' model
+├── SKILL.md                           # Codex 触发描述与主要工作流
+├── README.md                          # 安装与项目说明
+├── AGENTS.md                          # Codex 维护本仓库的规范
+├── agents/openai.yaml                 # 可选界面元数据
+├── references/
+│   ├── training_plans.md
+│   ├── data_analysis.md
+│   ├── race_specific.md
+│   ├── concepts_glossary.md
+│   ├── advanced_data_analysis.md
+│   ├── polarized_training.md
+│   ├── indoor_training.md
+│   ├── hiit_and_vo2max.md
+│   ├── overtraining_and_recovery.md
+│   ├── critical_power_and_w_prime.md
+│   ├── multisource_coaching.md
+│   └── return_to_riding.md
+├── tests/validate_skill.py            # 静态校验
+└── .github/workflows/skill-validation.yml
 ```
 
 ---
-
 ## 🚀 使用示例 · Usage
 
 | 中文 | English |
@@ -159,10 +166,10 @@ MIT © [1164origami](https://github.com/1164origami)
 <p align="center">
   <sub>用功率训练，以信心比赛 · Train with power, race with confidence</sub>
   <br/>
-  <sub>Built for OpenClaw & QClaw</sub>
+  <sub>Codex-first · Open Agent Skills</sub>
 </p>
 
-## 2026-11 更新：多源数据训练与安全修订
+## 🧭 近期更新：多源数据训练与安全修订
 
 本仓库提供**训练知识**，不自动取得用户运动账号权限。支持将已获授权的 COROS/高驰、Intervals.icu 记录与本人RPE、症状、睡眠、补给一起评估；跨平台同一次活动不重复计数。详见 [多源教练协议](references/multisource_coaching.md) 与 [复骑/100km分级指南](references/return_to_riding.md)。
 
