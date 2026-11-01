@@ -11,7 +11,7 @@
 ### 训练水平与间歇训练的关系
 
 - **新手/休闲骑手**：仅增加骑行量即可大幅提高——VO₂max、乳酸阈值、耐力都能通过低强度训练改善
-- **有训练基础的车手**：低强度训练的边际效益递减，**必须加入高强度间歇才能继续进步**
+- **有训练基础的车手**：高强度间歇常是提高专项表现的有效工具，但是否引入取决于训练目标、总负荷、伤痛和恢复；并非所有人必须加入才能进步
 - **高水平车手**：高强度间歇是提升的关键——研究表明，对训练有素的耐力运动员，仅做低强度训练几乎无法继续提高
 
 > 📌 引用（Buchheit & Laursen, 2013 review）："Submaximal endurance training yields significant improvements in sedentary and recreationally active groups, but well-trained athletes require high-intensity interval training to see further adaptation."
@@ -26,7 +26,7 @@
 - 休息：5min Z1（1:1 work:rest）
 - 目标：提高VO₂max
 - 强度理由：需要达到>90% HRmax才能有效刺激VO₂max
-- 关键：最后一组应达到力竭边缘，如果轻松完成说明强度不够
+- 关键：可按技术、姿态和RPE评估剂量，通常不必每次间歇都做到力竭；出现明显疼痛或异常不适应立即停止
 
 **2. 3×8min @ 100-105% FTP（阈值+间歇）**
 - 休息：4min Z1

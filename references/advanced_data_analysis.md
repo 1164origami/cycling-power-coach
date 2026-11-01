@@ -96,7 +96,7 @@ PDC = 长期MMP曲线的拟合版本，更平滑，适合跨赛季比较。
 
 **P = W' / t + CP**
 
-- **CP (Critical Power)**：理论上可无限维持的功率（≈FTP），即曲线的渐近线
+- **CP (Critical Power)**：多时长功率—时间模型的渐近线、重度与极重强度域的大致分界；并非生理上可以无限维持的功率，且不等同FTP
 - **W' (W-prime)**：CP以上的有限能量储备（千焦），即曲线下方的面积
 
 ### W' 的实战意义
@@ -222,14 +222,17 @@ PDC = 长期MMP曲线的拟合版本，更平滑，适合跨赛季比较。
 
 ### TSS密度
 
-**TSS密度 = TSS / 时长(小时)**
+**TSS密度 = TSS ÷ 时长(h) = 100 × IF²**，其中IF = NP/FTP。这里是整次运动的**归一化负荷密度**，不是实际运动中每一分钟的功率区间分布。
 
-- TSS密度 < 60/h → 恢复骑行
-- TSS密度 60-80/h → Z2有氧耐力
-- TSS密度 80-100/h → 甜区/节奏训练
-- TSS密度 > 100/h → 高强度间歇/比赛
+| 整次骑行 IF（示例） | 对应TSS/h | 含义 |
+|---:|---:|---|
+| 0.50 | 25 | 很轻松，但是否恢复仍需结合症状 |
+| 0.60 | 36 | 整体较低强度 |
+| 0.75 | 56.25 | 接近传统Z2上沿的稳态例子 |
+| 0.90 | 81 | 整体较高负荷 |
+| 1.00 | 100 | 约阈值强度的整段等效负荷 |
 
-> 💡 TSS密度是比总TSS更精准的训练强度指标
+**不能把60 TSS/h一律称为恢复骑，更不能将60–80 TSS/h直接标为Z2**。短时间高强度间歇与长时间低强度混合可有相似整段IF；旧FTP会影响全部换算。
 
 ---
 
@@ -253,7 +256,7 @@ PDC = 长期MMP曲线的拟合版本，更平滑，适合跨赛季比较。
 | FTP测试中功率突变 | 功率计电池不足 | 充电后重测 |
 | 心率与功率不匹配 | 光电心率延迟/不准 | 使用胸带心率 |
 | 20分钟测试MMP远低于预期 | 起步太猛后崩了 | 重新测试，匀速策略 |
-| 室外功率比室内低10-15% | 正常现象（风/路面/惯性） | 分别设定室内外FTP |
+| 室内外功率存在差异 | 可能涉及功率源、校准、散热、姿势、协议等 | 对齐条件再判断是否需要分开设定训练区间 |
 
 ---
 
@@ -282,7 +285,7 @@ Ismael et al. (2026) 系统综述21项研究，主要发现：
    - 训练计划应针对性模拟比赛强度分布
    - 恢复日/恢复周的质量直接影响耐久性
 
-### 实时监测耐久性：踏频衰减（PMC13063868）
+### 辅助观察疲劳：踏频衰减（Barsumyan et al., 2026, PMC13063868）
 
 Sparks et al. (2026) 发现：**踏频下降是急性疲劳的有效替代指标**。
 
@@ -324,7 +327,7 @@ Sparks et al. (2026) 发现：**踏频下降是急性疲劳的有效替代指标
 3. Skiba, P.F. "The Physiology of W'." *International Journal of Sports Physiology and Performance* (2013).
 4. Clarke, D.C. & Skiba, P.F. "Rationale and Resources for Teaching the Mathematical Modeling of Athletic Training and Performance." *Advances in Physiology Education* (2013).
 5. Ismael, A. et al. (2026). "Is intensity the most important factor in determining the amount of prior work accumulated that affects cyclists' acute durability? A systematic review." *BMC Sports Science, Medicine and Rehabilitation*, 18, 42. PMC12881052.
-6. Sparks, H. et al. (2026). "The relationship between cadence decline, cardiovascular drift and aerobic decoupling as a marker of fatigue in well trained cyclists." *BMC Sports Science, Medicine and Rehabilitation*, 18, 89. PMC13063868.
+6. Barsumyan, A. et al. (2026). "The relationship between cadence decline, cardiovascular drift and aerobic decoupling as a marker of fatigue in well trained cyclists." *BMC Sports Science, Medicine and Rehabilitation*, 18, 179. PMC13063868. https://doi.org/10.1186/s13102-026-01678-w
 7. Johnson, D. "Why durability is more important than FTP." YouTube (2026).
 8. Mateo-March, M. et al. (2026). "The Record Power Profile of Male Under-23 Cyclists: Normative Values and Fatigue Effects." *Scand J Med Sci Sports*, 36(4), e70278. PMID: 41934371.
 9. Main, E. et al. (2026). "Low carbohydrate availability reduces power output at the moderate-to-heavy transition, impairs efficiency, and increases median power frequency during cycling in females." *Eur J Appl Physiol*. PMID: 42228164.
